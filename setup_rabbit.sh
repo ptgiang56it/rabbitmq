@@ -4,7 +4,7 @@ rabbitmqctl wait $RABBITMQ_PID_FILE
 rabbitmqctl add_vhost users
 rabbitmqctl set_permissions --vhost users $RABBITMQ_DEFAULT_USER ".*" ".*" ".*"
 
-rabbitmqadmin declare exchange --user=$RABBITMQ_DEFAULT_USER --password=$RABBITMQ_DEFAULT_PASS name=DLX type=direct durable=true
+rabbitmqadmin declare exchange --user=$RABBITMQ_DEFAULT_USER --password=$RABBITMQ_DEFAULT_PASS name=DLX type=topic durable=true internal=true
 rabbitmqadmin declare queue --user=$RABBITMQ_DEFAULT_USER --password=$RABBITMQ_DEFAULT_PASS name=deadletters durable=true
 rabbitmqadmin declare binding --user=$RABBITMQ_DEFAULT_USER --password=$RABBITMQ_DEFAULT_PASS source=DLX destination=deadletters routing_key="#"
 
