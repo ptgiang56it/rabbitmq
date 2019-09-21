@@ -16,3 +16,6 @@ rabbitmqadmin declare binding --user=$RABBITMQ_DEFAULT_USER --password=$RABBITMQ
 
 rabbitmqadmin declare queue --user=$RABBITMQ_DEFAULT_USER --password=$RABBITMQ_DEFAULT_PASS name=svc.slice durable=true 'arguments={"x-dead-letter-exchange":"DLX"}'
 rabbitmqadmin declare binding --user=$RABBITMQ_DEFAULT_USER --password=$RABBITMQ_DEFAULT_PASS source=amq.headers destination=svc.slice 'arguments={"x-match":"all", "service":"slicer", "slicer":"slic3r"}'
+
+rabbitmqadmin declare queue --user=$RABBITMQ_DEFAULT_USER --password=$RABBITMQ_DEFAULT_PASS name=svc.cura_slice durable=true 'arguments={"x-dead-letter-exchange":"DLX"}'
+rabbitmqadmin declare binding --user=$RABBITMQ_DEFAULT_USER --password=$RABBITMQ_DEFAULT_PASS source=amq.headers destination=svc.cura_slice 'arguments={"x-match":"all", "service":"slicer", "slicer":"curaengine"}'
