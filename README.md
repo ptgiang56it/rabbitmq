@@ -15,3 +15,5 @@ docker build -t localhost/rabbitmq .
 docker run -p 15672:15672 -p 5672:5672 -p 15674:15674 --add-host auth_api:192.168.65.2 localhost/rabbitmq
 
 The auth_api host IP is where your http auth server will be running.  
+
+> Refer: http://www.kevinmusselman.com/2019/10/21/real-time-websockets-using-rabbitmq/
